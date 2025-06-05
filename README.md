@@ -57,15 +57,13 @@ A classification head processes the combined features through dense layers (512 
     ```
 
 2. Install dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
+    You will need to install required R packages and libraries needed to run the notebooks in this repository.
 
 3. Train the model:
     To train the model, open any of the IPYNB notebooks and run them with a suitable software. Preferably Kaggle, Colab or Jupyter notebook.
 
 4. Evaluate performance:
-    To evaluate performance, access this link: 
+    Inferences and post-training evaluations are done in the notebooks with -test.ipynb at the end of their filenames.
 
 ---
 
