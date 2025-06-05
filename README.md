@@ -2,25 +2,7 @@
 
 ## Abstract
 
-Blood cancer remains one of the most pressing global health concerns, with diagnosis still posing significant challenges. Current image-based research on blood cancer cells primarily focuses on single-cell images, often overlooking spatial relationships between multiple cells.
-
-This project aims to address that gap by training models for a multi-classification task to classify leukemia subtypes using the **Acute Lymphoblastic Leukemia (ALL)** dataset. The dataset comprises **3,256** multi-cell blood smear images categorized by their maturity subtypes.
-
-We proposed a novel **Convolutional Neural Network (CNN)** architecture and evaluated multiple machine learning models, including:
-
-- SVM
-- XGBoost
-- VGG16
-- DenseNet-201
-- ConvNeXt
-
-Our focus was on optimizing classification **accuracy** while also minimizing **misclassification costs** across different leukemia stages.
-
-Key findings:
-- **ConvNeXt** and **DenseNet-201** pretrained models, especially when combined with our proposed CNN architecture, showed the best performance.
-- **DenseNet-201** achieved the highest overall accuracy with minimal misclassification costs.
-
----
+Blood cancer remains one of the most pressing concerns globally, and its means of diagnosis is still a challenge to this day. Current image-based research on blood cancer cells primarily focuses on single- cell images often neglecting the spatial features between multiple cells. Our aim is to train models for multi-classification task to classify leukemia subtypes using the Acute Lymphoblastic Leukemia (ALL) dataset, which comprises a diverse collection of 3,256 multi-cell blood smear images classed according to their maturity subtypes. In this project, we also proposed a new Convolutional Neural Network (CNN) architecture evaluated multiple machine learning models, including SVM, XGBoost, VGG16, DenseNet- 201, and ConvNeXt. We focused on optimizing accuracy while considering the misclassification costs associated with different leukemia stages, and found that ConvNeXt and DenseNet-201 pretrained model combined with our proposed architecture performs the best, with DenseNet-201 topping in performance across accuracy and having minimal misclassification costs.
 
 ##  Dataset
 
