@@ -68,7 +68,7 @@ The pretrained base model also extracts features passed through a global average
 
 ## Acknowledgements
 
-This work was made possible by the ALL image dataset and the support of deep learning libraries such as Keras and Computer Vision models.
+This work was made possible by the ALL image dataset and the support of deep learning libraries such as Keras, TensorFlow and caret
 
 ---
 
