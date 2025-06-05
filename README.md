@@ -64,7 +64,7 @@ trade-offs in terms of misclassification, particularly for early-stage subtypes.
 
 ## Limitations
 
-Despite strong performance, models like DenseNet-201 and ConvNeXt are black-box architectures, making their decisions difficult to interpret—an important barrier in clinical adoption where transparency is essential.
+Despite strong performance, models like DenseNet-201 and ConvNeXt are black-box architectures, making their decisions difficult to interpret, making it an especially important barrier in clinical adoption where transparency is essential.
 
 The misclassification costs used were subjectively defined, lacking validation from medical experts or data-driven methods. Future work should involve clinical input or empirical cost modeling to improve accuracy and credibility.
 
