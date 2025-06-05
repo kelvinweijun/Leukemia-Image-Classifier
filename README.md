@@ -75,6 +75,78 @@ This work was made possible by the ALL image dataset and the support of deep lea
 
 ---
 
-## License
+## References
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+[1] Nan Zhang, Jinxian Wu, Qian Wang, Yuxing Liang, Xinqi Li, Guopeng Chen, Linlu Ma, Xiaoyan Liu,
+and Fuling Zhou. Global burden of hematologic malignancies and evolution patterns over the past 30
+years. Blood Cancer Journal, 13(1):82, 2023.
+
+[2] World Health Organization et al. Early cancer diagnosis saves lives, cuts treatment costs. World Health
+Organization, 2017.
+
+[3] Tibor Mezei, Melinda Kolcsar, András Joó, and Simona Gurzu. Image analysis in histopathology and
+cytopathology: From early days to current perspectives. Journal of Imaging, 10(10):252, 2024.
+[4] Ahmed J Abougarair, M Alshaibi, Amany K Alarbish, Mohammed Ali Qasem, Doaa Abdo, Othman
+Qasem, Fursan Thabit, and Ozgu Can. Blood cells cancer detection based on deep learning. Journal of
+Advances in Artificial Intelligence, 2(1):108-121, 2024.
+
+[5] Amjad Rehman, Naveed Abbas, Tanzila Saba, Syed Ijaz ur Rahman, Zahid Mehmood, and Hoshang
+Kolivand. Classification of acute lymphoblastic leukemia using deep learning. Microscopy Research and
+Technique, 81(11):1310-1317, 2018.
+
+[6] Mustafa Ghaderzadeh, Mehrad Aria, Azamossadat Hosseini, Farkhondeh Asadi, Davood Bashash, and
+Hassan Abolghasemi. A fast and efficient cnn model for b-all diagnosis and its subtypes classification
+using peripheral blood smear images. International Journal of Intelligent Systems, 37(8):5113-5133,
+2022.
+
+[7] Mehmet Erten, Prabal Datta Barua, Sengul Dogan, Turker Tuncer, Ru-San Tan, and UR Acharya.
+Concatnext: An automated blood cell classification with a new deep convolutional neural network.
+Multimedia Tools and Applications, pages 1-19, 2024.
+
+[8] Murray H Loew. Feature extraction. Handbook of medical imaging, 2:273-342, 2000.
+
+[9] Scott E Umbaugh. Digital image processing and analysis: computer vision and image analysis. CRC
+Press, 2023.
+
+[10] David A Forsyth and Jean Ponce. Computer vision: a modern approach. prentice hall professional
+technical reference, 2002.
+
+[11] Dengsheng Zhang and Guojun Lu. Review of shape representation and description techniques. Pattern
+recognition, 37(1):1-19, 2004.
+
+[12] Olaf Ronneberger, Philipp Fischer, and Thomas Brox. U-net: Convolutional networks for biomedical
+image segmentation. In Medical image computing and computer-assisted intervention-MICCAI 2015:
+18th international conference, Munich, Germany, October 5-9, 2015, proceedings, part III 18, pages
+234-241. Springer, 2015.
+
+[13] Mingle Xu, Sook Yoon, Alvaro Fuentes, and Dong Sun Park. A comprehensive survey of image aug-
+mentation techniques for deep learning. Pattern Recognition, 137:109347, 2023.
+
+[14] Ravindra Singh, Naurang Singh Mangat, Ravindra Singh, and Naurang Singh Mangat. Stratified sam-
+pling. Elements of survey sampling, pages 102-144, 1996.
+
+[15] Corinna Cortes. Support-vector networks. Machine Learning, 1995.
+
+[16] GeeksforGeeks. Difference between random forest vs xgboost, 2024. Accessed: 2024-11-18.
+
+[17] Saiwa.ai. Xgboost in machine learning: Everything you need to know, 2024. Accessed: 2024-11-18.
+
+[18] Guestrin Chen. Xgboost: A scalable tree boosting system. Proceedings of the 22nd ACM SIGKDD
+International Conference on Knowledge Discovery and Data Mining, pages 785-794, 2016.
+
+[19] Random Realizations. Xgboost explained, 2024. Accessed: 2024-11-18.
+
+[20] The AI Edge. Understanding xgboost: From a to z, 2024. Accessed: 2024-11-19.
+
+[21] Ragav Venkatesan and Baoxin Li. Convolutional neural networks in visual computing: a concise guide.
+CRC Press, 2017.
+
+[22] Karen Simonyan and Andrew Zisserman. Very deep convolutional networks for large-scale image recog-
+nition. arXiv preprint arXiv:1409.1556, 2014.
+[23] Gao Huang, Zhuang Liu, Laurens Van Der Maaten, and Kilian Q Weinberger. Densely connected con-
+volutional networks. In Proceedings of the IEEE conference on computer vision and pattern recognition,
+pages 4700-4708, 2017.
+
+[24] Zhuang Liu, Hanzi Mao, Chao-Yuan Wu, Christoph Feichtenhofer, Trevor Darrell, and Saining Xie. A
+convnet for the 2020s. In Proceedings of the IEEE/CVF conference on computer vision and pattern
+recognition, pages 11976-11986, 2022.
