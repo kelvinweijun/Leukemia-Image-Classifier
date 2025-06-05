@@ -1,0 +1,36 @@
+flowchart TD
+    input["input_2 (224,224,3)"] --> rgb2hsv["tf.image.rgb_to_hsv (224,224,3)"]
+    rgb2hsv --> getitem["tf.__operators__.getitem (224,224)"]
+    getitem --> greater["tf.math.greater_equal (224,224)"]
+    greater --> logical["tf.math.logical_and (224,224)"]
+    
+    input --> multiply["tf.math.multiply (224,224,3)"]
+    logical --> multiply
+    
+    multiply --> conv1["conv2d (224,224,32)"]
+    conv1 --> conv2["conv2d_1 (224,224,32)"]
+    conv2 --> pool1["max_pooling2d (112,112,32)"]
+    
+    pool1 --> conv3["conv2d_2 (112,112,64)"]
+    conv3 --> conv4["conv2d_3 (112,112,64)"]
+    conv4 --> pool2["max_pooling2d_1 (56,56,64)"]
+    
+    pool2 --> conv5["conv2d_4 (56,56,128)"]
+    conv5 --> conv6["conv2d_5 (56,56,128)"]
+    
+    input --> convnext["convnext_base (7,7,1024)"]
+    convnext --> gap["global_average_pooling2d (1024)"]
+    
+    conv6 --> flatten["flatten (401,408)"]
+    
+    gap --> concat["concatenate (402,432)"]
+    flatten --> concat
+    
+    concat --> dense1["dense (512)"]
+    dense1 --> bn["batch_normalization (512)"]
+    bn --> dropout["dropout (512)"]
+    dropout --> output["dense_3 (4)"]
+    
+    style input fill:#f9f,stroke:#333
+    style output fill:#ff9,stroke:#333
+    style convnext fill:#9cf,stroke:#333

@@ -1,0 +1,264 @@
+---
+title: "svm"
+output: html_document
+date: "2024-11-08"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Loading dataset
+```{r}
+# Load necessary libraries
+library(keras)
+library(tensorflow)
+library(dplyr) # For data manipulation
+
+# Set the path to your dataset
+data_dir <- "C:/Users/kelvi/Downloads/archive/Original"
+
+# Define image size and parameters
+img_height <- 150
+img_width <- 150
+batch_size <- 32
+
+# Create a mapping from class names to scores
+class_mapping <- c("Benign" = 0, "Early" = 1, "Pre" = 2, "Pro" = 3)
+
+# Create a list to hold all file paths and corresponding labels
+file_paths <- c()
+class_labels <- c()
+scores <- c()
+
+# Loop through each class to gather file paths and scores
+for (class in names(class_mapping)) {
+  class_path <- file.path(data_dir, class)
+  files <- list.files(class_path, full.names = TRUE)
+  
+  # Ensure files are unique
+  unique_files <- unique(files)
+
+  file_paths <- c(file_paths, unique_files)
+  class_labels <- c(class_labels, rep(class, length(unique_files)))  # Store the class name
+  scores <- c(scores, rep(class_mapping[class], length(unique_files)))  # Store the corresponding score
+}
+
+# Create a DataFrame with only the required structure
+full_df <- data.frame(
+  image_filename = file_paths,
+  score = scores,
+  class = class_labels,
+  stringsAsFactors = FALSE
+)
+
+# Shuffle the DataFrame to ensure random sampling
+set.seed(123) # For reproducibility
+full_df <- full_df[sample(nrow(full_df)), ]
+
+# For displaying filenames without their full paths
+display_full_df <- mutate(full_df,image_filename = basename(image_filename))
+
+# Print the full DataFrame
+print("Full DataFrame:")
+print(head(display_full_df)) # Display the first few rows
+
+# Check the dimensions
+print(dim(full_df))  # This should now only have 3 columns
+
+
+```
+
+Feature Extraction
+
+```{r}
+
+# Load necessary libraries
+library(keras)
+library(tensorflow)
+library(dplyr)
+library(imager)
+library(caret)
+library(e1071)
+library(ggplot2)
+library(EBImage)  # For bwlabel and shape feature extraction
+
+# Define image parameters
+img_height <- 150
+img_width <- 150
+
+# Modify the extract_features function to ensure consistent feature length
+extract_features <- function(image_path, bins = 16) {
+  # Load and resize the image using imager
+  image <- load.image(image_path)
+  image <- resize(image, img_width, img_height)
+  
+  # Convert image to array and split into color channels
+  red_channel <- as.vector(image[,,1,1])
+  green_channel <- as.vector(image[,,1,2])
+  blue_channel <- as.vector(image[,,1,3])
+  
+  # Color histogram features for each channel
+  red_hist <- hist(red_channel, breaks = bins, plot = FALSE)$counts / length(red_channel)
+  green_hist <- hist(green_channel, breaks = bins, plot = FALSE)$counts / length(green_channel)
+  blue_hist <- hist(blue_channel, breaks = bins, plot = FALSE)$counts / length(blue_channel)
+  
+  # Convert to grayscale for texture and edge features
+  gray_image <- 0.299 * red_channel + 0.587 * green_channel + 0.114 * blue_channel
+  
+  # Texture features: contrast, skewness, and kurtosis
+  contrast <- var(gray_image)
+  skewness <- e1071::skewness(gray_image)
+  kurtosis <- e1071::kurtosis(gray_image)
+  
+  # Statistical descriptors
+  mean_intensity <- mean(gray_image)
+  sd_intensity <- sd(gray_image)
+  max_intensity <- max(gray_image)
+  min_intensity <- min(gray_image)
+  
+  # Edge detection using gradient magnitude approximation (Sobel-like)
+  gray_img_cimg <- as.cimg(gray_image, x = img_width, y = img_height)
+  grad_x <- imgradient(gray_img_cimg, "x")
+  grad_y <- imgradient(gray_img_cimg, "y")
+  edge_magnitude <- sqrt(grad_x^2 + grad_y^2)  # Approximate edge strength
+  edge_intensity_mean <- mean(edge_magnitude)
+  edge_intensity_sd <- sd(edge_magnitude)
+  
+  # Shape features using segmentation (using EBImage)
+  # Convert grayscale image to 2D array and then to binary image
+  gray_img_matrix <- matrix(gray_image, nrow = img_height, ncol = img_width)
+  binary_image <- gray_img_matrix > 0.5  # Apply threshold to get binary mask
+  binary_image <- as.Image(binary_image)  # Convert to EBImage object
+  
+  # Label the binary image
+  labeled_image <- bwlabel(binary_image)
+  
+  # Compute shape features
+  shape_features <- computeFeatures.shape(labeled_image)
+  
+  # Shape descriptors - Mean values of area, perimeter, and circularity
+  area_mean <- mean(shape_features[,"s.area"], na.rm = TRUE)
+  perimeter_mean <- mean(shape_features[,"s.perimeter"], na.rm = TRUE)
+  circularity_mean <- mean((4 * pi * shape_features[,"s.area"]) / (shape_features[,"s.perimeter"]^2), na.rm = TRUE)
+  
+  # Combine all features into a single vector
+  feature_vector <- c(red_hist, green_hist, blue_hist, contrast, skewness, kurtosis, 
+                      mean_intensity, sd_intensity, max_intensity, min_intensity,
+                      edge_intensity_mean, edge_intensity_sd,
+                      area_mean, perimeter_mean, circularity_mean)
+  
+  # Ensure consistent feature length by padding with NAs if necessary
+  target_length <- 71
+  if (length(feature_vector) < target_length) {
+    feature_vector <- c(feature_vector, rep(NA, target_length - length(feature_vector)))
+  } else if (length(feature_vector) > target_length) {
+    feature_vector <- feature_vector[1:target_length]
+  }
+  
+  return(feature_vector)
+}
+
+```
+
+Splitting data
+
+```{r}
+
+# Split the DataFrame into training and testing sets first
+set.seed(123)
+train_indices <- createDataPartition(full_df$score, p = 0.8, list = FALSE)
+train_df <- full_df[train_indices, ]
+test_df <- full_df[-train_indices, ]
+
+# Extract features for training set
+print("Extracting features from training images...")
+train_features <- do.call(rbind, lapply(train_df$image_filename, extract_features))
+train_features_df <- as.data.frame(train_features)
+colnames(train_features_df) <- paste0("feature_", seq_len(ncol(train_features_df)))
+train_data <- cbind(train_features_df, score = as.numeric(train_df$score))
+
+# Handle missing values if any (e.g., replace NA with 0 or impute)
+train_data[is.na(train_data)] <- 0
+
+head(train_data)
+dim(train_data)
+
+# Extract features for test set
+print("Extracting features from test images...")
+test_features <- do.call(rbind, lapply(test_df$image_filename, extract_features))
+test_features_df <- as.data.frame(test_features)
+colnames(test_features_df) <- paste0("feature_", seq_len(ncol(test_features_df)))
+test_data <- cbind(test_features_df, score = as.numeric(test_df$score))
+
+# Handle missing values in the test set
+test_data[is.na(test_data)] <- 0
+
+head(test_data)
+dim(test_data)
+
+
+```
+
+Training SVM
+
+```{r}
+
+# Load caret and e1071 for SVM model training
+library(caret)
+library(e1071)
+library(ggplot2)
+
+# Ensure 'score' is numeric for regression tasks
+train_data$score <- as.numeric(train_data$score)
+test_data$score <- as.numeric(test_data$score)
+
+# Standardize the features
+preprocess_params <- preProcess(train_data[, -ncol(train_data)], method = c("center", "scale"))
+train_data_scaled <- predict(preprocess_params, train_data)
+test_data_scaled <- predict(preprocess_params, test_data)
+
+
+# Train the SVM model using the training data
+svm_model <- svm(score ~ ., data = train_data_scaled, kernel = "radial", cost = 1, epsilon = 0.1)
+
+# Print the summary of the SVM model
+print(svm_model)
+
+# Predict on the training set
+train_predictions <- predict(svm_model, newdata = train_data_scaled)
+
+# Calculate MAE on the training set
+train_mae <- mean(abs(train_predictions - train_data_scaled$score))
+
+# Print the training MAE
+cat("Mean Absolute Error on the train set:", train_mae, "\n")
+
+# Make predictions on the test set
+test_predictions <- predict(svm_model, newdata = test_data_scaled)
+
+# Calculate the Mean Absolute Error (MAE) on the test set
+mae <- mean(abs(test_predictions - test_data$score))
+cat("Mean Absolute Error on the test set:", mae, "\n")
+
+# Visualize the predictions vs actual scores
+ggplot(data = data.frame(Actual = test_data$score, Predicted = test_predictions), aes(x = Actual, y = Predicted)) +
+  geom_point(color = "blue") +
+  geom_abline(slope = 1, intercept = 0, color = "red", linetype = "dashed") +
+  labs(title = "Actual vs Predicted Scores",
+       x = "Actual Scores", y = "Predicted Scores") +
+  theme_minimal()
+
+# Optionally, save the model for future use
+save(svm_model, file = "svm_model.RData")
+
+# Evaluate the model's performance with other metrics (e.g., RMSE, R-squared)
+rmse <- sqrt(mean((test_predictions - test_data$score)^2))
+cat("Root Mean Squared Error (RMSE):", rmse, "\n")
+
+# Calculate R-squared
+rsq <- 1 - sum((test_predictions - test_data$score)^2) / sum((test_data$score - mean(test_data$score))^2)
+cat("R-squared:", rsq, "\n")
+
+
+```
