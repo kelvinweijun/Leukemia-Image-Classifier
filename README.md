@@ -62,28 +62,16 @@ Blood cancer remains one of the most pressing concerns globally, and its means o
     ```
 
 3. Train the model:
-    ```bash
-    python train.py --model densenet201
-    ```
+    To train the model, open any of the IPYNB notebooks and run them with a suitable software. Preferably Kaggle, Colab or Jupyter notebook.
 
 4. Evaluate performance:
-    ```bash
-    python evaluate.py
-    ```
-
----
-
-## 📈 Future Work
-
-- Incorporating attention mechanisms
-- Leveraging segmentation masks
-- Expansion to other types of blood cancers
+    To evaluate performance, access this link: 
 
 ---
 
 ## 🤝 Acknowledgements
 
-This work was made possible by the ALL image dataset and the support of deep learning libraries such as TensorFlow and PyTorch.
+This work was made possible by the ALL image dataset and the support of deep learning libraries such as Keras and Computer Vision models.
 
 ---
 
