@@ -75,12 +75,17 @@ Additionally, the dataset used (3,256 samples) is relatively small, which may li
     ```
 
 2. Install dependencies:
-    You will need to install required R packages and libraries needed to run the notebooks in this repository.
+    You will need to install required R packages and libraries needed to run the notebooks in this repository. Below are the list of libraries required:
+   - keras
+   - tensorflow
+   - dplyr
+   - tidyverse
+   - caret
 
-3. Train the model:
+4. Train the model:
     To train the model, open any of the IPYNB notebooks and run them with a suitable software. Preferably Kaggle, Colab or Jupyter notebook.
 
-4. Evaluate performance:
+5. Evaluate performance:
     Inferences and post-training evaluations are done in the notebooks with -test.ipynb at the end of their filenames.
 
 ---
