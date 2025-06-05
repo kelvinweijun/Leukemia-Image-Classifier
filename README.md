@@ -56,11 +56,7 @@ A classification head processes the combined features through dense layers (512 
 
 ## Conclusion
 
-In conclusion, DenseNet-201 stands out as the most reliable model for leukemia subtype classification, offer-
-ing the highest test accuracy, the lowest misclassification cost, and best cost-sensitive metrics. This makes it
-the most suitable for clinical applications where precision in identifying leukemia stages is critical. However,
-while DenseNet-201 outperforms other models, it is important to note that even the best models exhibit
-trade-offs in terms of misclassification, particularly for early-stage subtypes.
+In conclusion, DenseNet-201 stands out as the most reliable model for leukemia subtype classification, offering the highest test accuracy, the lowest misclassification cost, and best cost-sensitive metrics. This makes it the most suitable for clinical applications where precision in identifying leukemia stages is critical. However, while DenseNet-201 outperforms other models, it is important to note that even the best models exhibit trade-offs in terms of misclassification, particularly for early-stage subtypes.
 
 ## Limitations
 
@@ -68,7 +64,7 @@ Despite strong performance, models like DenseNet-201 and ConvNeXt are black-box 
 
 The misclassification costs used were subjectively defined, lacking validation from medical experts or data-driven methods. Future work should involve clinical input or empirical cost modeling to improve accuracy and credibility.
 
-Additionally, the dataset used (3,256 samples) is relatively small, which may limit generalizability. Larger, more diverse datasets are needed to ensure robustness and reduce the risk of misdiagnosis in real-world scenarios.
+Additionally, the dataset used (3,256 samples) is relatively small, which may limit generalisability. Larger, more diverse datasets are needed to ensure robustness and reduce the risk of misdiagnosis in real-world scenarios.
 
 ## Usage
 
