@@ -18,11 +18,17 @@ The images displayed clear differentiation between classes especially between Ea
 ## Features
 
 - Multi-cell spatial feature analysis
-- CNN-based custom architecture
+- CNN-based custom architecture integrating both feature extraction blocks and U-Net segmentation blocks
 - Transfer learning with pretrained models (VGG16, DenseNet-201, ConvNeXt)
 - Evaluation using classification accuracy and misclassification cost metrics
 
 ---
+
+## U-Net Segmentation
+
+<img src="images/U_net_demo.jpg" alt="Sample Prediction" width="500"/>
+
+Segmentation in image classification refers to the process of dividing an image into meaningful regions, or segments, based on shared attributes like color, texture, or intensity. This technique is important because it allows for more accurate and efficient analysis by isolating relevant features that aid in object detection and classification. For example, in tasks such as medical imaging or autonomous driving, segmentation helps identify specific areas of interest, like tumors or pedestrians, reducing noise and improving the performance of classification models. By focusing on distinct regions rather than raw images, segmentation allows machine learning models to process information more effectively, leading to better accuracy in predictions [12]. We will explain more in our proposed architecture where we use U-Net for the segmentation process.
 
 ## Proposed CNN Model Architecture
 
@@ -76,6 +82,10 @@ This work was made possible by the ALL image dataset and the support of deep lea
 ## Link to Trained Models
 
 https://drive.google.com/drive/folders/1Jq6gOQcDhlRX8C-norGbi3rhOKJYjhai?usp=sharing
+
+## Link to Dataset
+
+https://github.com/MehradAria/ALL-Subtype-Classification
 
 ## References
 
