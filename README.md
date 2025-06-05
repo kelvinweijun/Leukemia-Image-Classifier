@@ -64,23 +64,11 @@ trade-offs in terms of misclassification, particularly for early-stage subtypes.
 
 ## Limitations
 
-For the limitations of the methods used, deep learning models, such as DenseNet-201 and ConvNeXt, are of-
-ten considered "black-box" models. Their complex architectures make it difficult for clinicians to understand
-the reasoning behind the classification decisions, which could hinder trust and adoption in medical practice.
-In healthcare, interpretability is crucial for ensuring clinical decisions are transparent and justifiable.
+Despite strong performance, models like DenseNet-201 and ConvNeXt are black-box architectures, making their decisions difficult to interpret—an important barrier in clinical adoption where transparency is essential.
 
-Furthermore, the misclassification cost metrics used in our project were based on our subjective judgment,
-which means they were designed according to our perceived severity of misclassifications rather than a rigor-
-ous, scientifically grounded framework. While this approach aligns with our understanding of the potential
-clinical impact of misclassifying leukemia subtypes, it lacks objective validation or a consensus from medical
-experts regarding the relative costs of these errors. Therefore, consultation with medical professionals to
-define the misclassification costs based on clinical significance, or a data-driven method would help give more
-accurate and corroborated misclasssification cost metrics.
+The misclassification costs used were subjectively defined, lacking validation from medical experts or data-driven methods. Future work should involve clinical input or empirical cost modeling to improve accuracy and credibility.
 
-Also, there is a limitation of using such dataset for data mining and deep learning purposes. The dataset
-consists of 3,256 smaples which is small relative to the number of skin cancer cases worldwide. This might
-mean that the results shown in this report might not be indicative of its actual performance in real life.
-Further research in this area of study is needed to ensure that the risks of misdiagnosis are mitigated.
+Additionally, the dataset used (3,256 samples) is relatively small, which may limit generalizability. Larger, more diverse datasets are needed to ensure robustness and reduce the risk of misdiagnosis in real-world scenarios.
 
 ## Usage
 
