@@ -54,6 +54,34 @@ A classification head processes the combined features through dense layers (512 
 
 ---
 
+## Conclusion
+
+In conclusion, DenseNet-201 stands out as the most reliable model for leukemia subtype classification, offer-
+ing the highest test accuracy, the lowest misclassification cost, and best cost-sensitive metrics. This makes it
+the most suitable for clinical applications where precision in identifying leukemia stages is critical. However,
+while DenseNet-201 outperforms other models, it is important to note that even the best models exhibit
+trade-offs in terms of misclassification, particularly for early-stage subtypes.
+
+## Limitations
+
+For the limitations of the methods used, deep learning models, such as DenseNet-201 and ConvNeXt, are of-
+ten considered "black-box" models. Their complex architectures make it difficult for clinicians to understand
+the reasoning behind the classification decisions, which could hinder trust and adoption in medical practice.
+In healthcare, interpretability is crucial for ensuring clinical decisions are transparent and justifiable.
+
+Furthermore, the misclassification cost metrics used in our project were based on our subjective judgment,
+which means they were designed according to our perceived severity of misclassifications rather than a rigor-
+ous, scientifically grounded framework. While this approach aligns with our understanding of the potential
+clinical impact of misclassifying leukemia subtypes, it lacks objective validation or a consensus from medical
+experts regarding the relative costs of these errors. Therefore, consultation with medical professionals to
+define the misclassification costs based on clinical significance, or a data-driven method would help give more
+accurate and corroborated misclasssification cost metrics.
+
+Also, there is a limitation of using such dataset for data mining and deep learning purposes. The dataset
+consists of 3,256 smaples which is small relative to the number of skin cancer cases worldwide. This might
+mean that the results shown in this report might not be indicative of its actual performance in real life.
+Further research in this area of study is needed to ensure that the risks of misdiagnosis are mitigated.
+
 ## Usage
 
 1. Clone the repository:
