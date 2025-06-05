@@ -21,7 +21,7 @@ The models in this study will be using the archived dataset of Acute Lymphoblast
 
 ## Proposed CNN Model Architecture
 
-<img src="images/sample_visualization.png" alt="Sample Prediction" width="500"/>
+<img src="images/proposed_architecture_flowchart.png" alt="Sample Prediction" width="500"/>
 
 This model architecture integrates a pretrained base model with a U-Net-inspired segmentation block to perform segmentation and classification tasks. The pretrained model, initialized with ImageNet weights and excluding the top classification layers (include_top= FALSE), acts as a feature extractor, capturing high-level image features.
 The architecture starts with a functional layer that processes an input image to segment purple regions corresponding to lymphoblasts, using a color threshold in the HSV (Hue, Saturation, Value) color space with specified lower and upper bounds for the hue, saturation, and value channels. The input image is then converted from RGB to HSV format using TensorFlow's rgb_to_hsv function. A binary mask is created by checking if each pixel in the image falls within the defined purple color range for each of the HSV channels.
