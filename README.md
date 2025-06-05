@@ -77,7 +77,7 @@ This work was made possible by the ALL image dataset and the support of deep lea
 
 ## Link to Trained Models
 
-https://www.dropbox.com/scl/fo/wp4uqgxt2c4nphpi4pdox/AKVULdb6690KzIvK0rNn1H4?rlkey=3czxytwz6bwgey7q3wgb2139r&st=ldxqrrbc&dl=0
+https://drive.google.com/drive/folders/1Jq6gOQcDhlRX8C-norGbi3rhOKJYjhai?usp=sharing
 
 ## References
 
