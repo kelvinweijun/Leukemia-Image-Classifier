@@ -40,13 +40,13 @@ The pretrained base model also extracts features passed through a global average
 
 ## Results
 
-| Model         | Accuracy | Misclassification Cost | Notes                            |
-|---------------|----------|-------------------------|----------------------------------|
-| SVM           | ~        | ~                       | Baseline traditional model       |
-| XGBoost       | ~        | ~                       | Tree-based ensemble              |
-| VGG16         | ~        | ~                       | Pretrained CNN                   |
-| DenseNet-201  | ✅ Best  | ✅ Lowest                | Top performer                    |
-| ConvNeXt      | ✅ High  | ✅ Low                   | Strong contender                 |
+| Model       | Train Accuracy | Test Accuracy | Total Misclassification Cost | Average Cost Per Sample | Cost-Sensitive Accuracy | Weighted F1-Score |
+|-------------|----------------|---------------|------------------------------|--------------------------|-------------------------|-------------------|
+| SVM         | 0.9971         | 0.9517        | 345                          | 0.6660                   | 0.9879                  | 0.9448            |
+| XGBoost     | 0.9947         | 0.9479        | 380                          | 0.7336                   | 0.9867                  | 0.9419            |
+| VGG16       | 0.8637         | 0.9531        | 385                          | 0.7432                   | 0.9865                  | 0.9503            |
+| DenseNet-201| 0.9698         | 0.9961        | 20                           | 0.0386                   | 0.9993                  | 0.9958            |
+| ConvNeXt    | 0.9927         | 0.9941        | 40                           | 0.0772                   | 0.9986                  | 0.9950            |
 
 ---
 
