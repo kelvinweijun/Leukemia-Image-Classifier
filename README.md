@@ -6,10 +6,7 @@ Blood cancer remains one of the most pressing concerns globally, and its means o
 
 ##  Dataset
 
-- **Name**: Acute Lymphoblastic Leukemia (ALL)
-- **Type**: Multi-cell blood smear images
-- **Size**: 3,256 images
-- **Classes**: Benign, Early, Pre, Pro (based on cell maturity)
+The models in this study will be using the archived dataset of Acute Lymphoblastic Leukemia (ALL) blood cancer, which provides a large collection of 3,242 peripheral blood smear (PBS) images, organized into two subfolders where one contains the original images captured, and the other one pre-segmented. Within each of these two subfolders contains folders which hold images based on developmental subtypes: Benign, Early Pre-B, Pre-B, and Pro-B ALL. The dataset was prepared in the bone marrow laboratory of Taleqani Hospital in Tehran, Iran.
 
 ---
 
@@ -24,12 +21,11 @@ Blood cancer remains one of the most pressing concerns globally, and its means o
 
 ## Model Architectures
 
-- ✅ **Custom CNN**
-- ✅ **Support Vector Machine (SVM)**
-- ✅ **XGBoost**
-- ✅ **VGG16**
-- ✅ **DenseNet-201**
-- ✅ **ConvNeXt**
+**Support Vector Machine (SVM)**
+**XGBoost**
+**VGG16**
+**DenseNet-201**
+**ConvNeXt**
 
 ---
 
@@ -42,9 +38,6 @@ Blood cancer remains one of the most pressing concerns globally, and its means o
 | VGG16         | ~        | ~                       | Pretrained CNN                   |
 | DenseNet-201  | ✅ Best  | ✅ Lowest                | Top performer                    |
 | ConvNeXt      | ✅ High  | ✅ Low                   | Strong contender                 |
-| Custom CNN    | ✅       | ✅                       | Proposed architecture used       |
-
-(*Exact values to be added based on experiment logs*)
 
 ---
 
